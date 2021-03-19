@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import RedSeaImage from "../background-red-sea.jpg";
+import RedSeaImage from "../grand-lake-in-oklahoma.jpg";
 import MadLiberationLogo from "../mad-liberation-logo.png";
 import VeryAwesomePassoverLogo from "../VAPLogo-white.png";
 import { Configs } from "../Configs";
