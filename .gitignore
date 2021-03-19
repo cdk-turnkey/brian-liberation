@@ -1,5 +1,17 @@
 *.js
 !jest.config.js
+!backend/*.js
+!backend/**.js
+!backend/**/*.js
+!content/*.js
+!content/**.js
+!content/**/*.js
+!frontend/*.js
+!frontend/**.js
+!frontend/**/*.js
+!itest/*.js
+!itest/**.js
+!itest/**/*.js
 *.d.ts
 node_modules
 
