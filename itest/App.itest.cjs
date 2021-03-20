@@ -8,7 +8,7 @@ commander
   .version("3.0.0")
   .option(
     "-s, --site <URL>",
-    "Site to run against, default https://passover.lol"
+    "Site to run against, default https://brian-liberation.com"
   )
   .option("-L, --slow", "Run headfully in slow mode")
   .option("-I, --idp-url <URL>", "The URL expected after clicking 'Log in'")
@@ -20,7 +20,7 @@ commander
   .parse(process.argv);
 const slowDown = 200;
 const timeoutMs = 45000 + (commander.opts().slow ? slowDown + 2000 : 0);
-const defaultUrl = "https://passover.lol";
+const defaultUrl = "https://brian-liberation.com";
 const site = commander.opts().site || defaultUrl;
 const idpUrl = commander.opts().idpUrl;
 const userPoolId = commander.opts().userPoolId;
@@ -254,9 +254,9 @@ const submitAllLibs = async (page, prefix) => {
   ////////////////////////////////////////////////////////////////////////////////
   // Home Page
   await page
-    .waitForXPath('//*[text()="Join a seder"]', waitOptions)
+    .waitForXPath('//*[text()="Join a sesh"]', waitOptions)
     .catch(async (e) => {
-      failTest(e, "Join a seder button not found", browser);
+      failTest(e, "Join a sesh button not found", browser);
     });
 
   // Explain Page
