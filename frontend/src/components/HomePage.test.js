@@ -10,22 +10,22 @@ describe("<HomePage />", () => {
   let mount;
   const leadSederByVideoButton = (
     <Button
-      title="Lead a seder - by video"
+      title="Lead a sesh"
       variant="contained"
       component={Link}
       to="/explain-video"
     >
-      Lead a seder - by video
+      Lead a sesh
     </Button>
   );
   const joinSederButton = (
     <Button
-      title="Join a seder"
+      title="Join a sesh"
       variant="contained"
       component={Link}
       to="/enter-room-code"
     >
-      Join a seder
+      Join a sesh
     </Button>
   );
   const loginButton = (
