@@ -1,5 +1,9 @@
 # Brian Liberation
 
+This repo creates a serverless mad lib app. Its content is loosely themed around a guy named Brian.
+
+It was copied from the web app Mad Liberation, which is a mad lib app tightly themed around Passover, in part to show how easy the Mad Liberation architecture makes it to bootstrap new apps.
+
 ## Quickstart guide
 
 This repo will deploy a web application, including all the AWS resources needed for it to be usable, if you do the following.
