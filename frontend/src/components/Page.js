@@ -160,7 +160,7 @@ class Page extends React.Component {
       return (
         <div madliberationid="pass-this-device" mlnoncontent="true">
           <Typography variant="h5" gutterBottom>
-            Pass this device to {passTo}, then click:
+            Pick {passTo}, then click:
           </Typography>
           <Button
             madliberationid="ready-to-read-button"
