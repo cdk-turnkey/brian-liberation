@@ -153,7 +153,7 @@ class MenuAppBar extends React.Component {
           <Toolbar>
             {leftContent}
             <Typography variant="h6" color="inherit" className={classes.grow}>
-              Mad Liberation
+              Brian Liberation
             </Typography>
             {rightContent}
           </Toolbar>
