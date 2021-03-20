@@ -156,7 +156,7 @@ export class MadliberationWebapp extends cdk.Stack {
     const userPool = new cognito.UserPool(this, "UserPool", {
       selfSignUpEnabled: true,
       userVerification: {
-        emailSubject: "Mad Liberation: verify your new account",
+        emailSubject: "Brian Liberation: verify your new account",
         emailStyle: cognito.VerificationEmailStyle.LINK,
       },
       signInAliases: { username: false, email: true, phone: false },
