@@ -1,11 +1,11 @@
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Page from './Page';
-import React from 'react';
-import { Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Page from "./Page";
+import React from "react";
+import { Typography } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
-const styles = theme => ({});
+const styles = (theme) => ({});
 class Script extends React.Component {
   constructor(props) {
     super(props);
@@ -15,16 +15,16 @@ class Script extends React.Component {
       script: false,
       pageIndex:
         getStartingPageFromStorage &&
-        Number.isInteger(parseInt(localStorage.getItem('pageIndex')))
-          ? parseInt(localStorage.getItem('pageIndex'))
-          : 0
+        Number.isInteger(parseInt(localStorage.getItem("pageIndex")))
+          ? parseInt(localStorage.getItem("pageIndex"))
+          : 0,
     };
   }
   _isMounted = false;
   getScript = (roomCode, gameName) => {
     const { script } = this.props;
     if (this._isMounted) this.setState({ fetchingScript: true });
-    script(roomCode, gameName).then(d => {
+    script(roomCode, gameName).then((d) => {
       if (!this._isMounted) return;
       if (d.status === 200) {
         this.setState({ script: d.data });
@@ -40,21 +40,21 @@ class Script extends React.Component {
   decrementPageIndex = () => {
     if (this._isMounted) {
       this.setState({
-        pageIndex: this.state.pageIndex < 2 ? 0 : this.state.pageIndex - 1
+        pageIndex: this.state.pageIndex < 2 ? 0 : this.state.pageIndex - 1,
       });
     }
   };
   goToPage0 = () => {
     if (this._isMounted) {
       this.setState({
-        pageIndex: 0
+        pageIndex: 0,
       });
     }
   };
   persistState = () => {
-    localStorage.setItem('pageIndex', this.state.pageIndex);
+    localStorage.setItem("pageIndex", this.state.pageIndex);
     if (this.state.script) {
-      localStorage.setItem('script', JSON.stringify(this.state.script));
+      localStorage.setItem("script", JSON.stringify(this.state.script));
     }
   };
   handleVisibilityChange = () => {
@@ -64,15 +64,15 @@ class Script extends React.Component {
   };
   componentDidMount() {
     this._isMounted = true;
-    window.addEventListener('visibilitychange', this.handleVisibilityChange);
-    window.addEventListener('pagehide', this.persistState);
+    window.addEventListener("visibilitychange", this.handleVisibilityChange);
+    window.addEventListener("pagehide", this.persistState);
     const { confirmedRoomCode, confirmedGameName } = this.props;
     this.getScript(confirmedRoomCode, confirmedGameName);
   }
   componentWillUnmount() {
     this._isMounted = false;
-    window.removeEventListener('visibilitychange', this.handleVisibilityChange);
-    window.removeEventListener('pagehide', this.persistState);
+    window.removeEventListener("visibilitychange", this.handleVisibilityChange);
+    window.removeEventListener("pagehide", this.persistState);
   }
   render() {
     const { confirmedRoomCode, confirmedGameName } = this.props;
@@ -91,7 +91,7 @@ class Script extends React.Component {
           <div madliberationid="seder-ended-successfully" mlnoncontent="true">
             <div>
               <Typography variant="h4" gutterBottom>
-                The seder has ended successfully
+                The sesh has ended successfully
               </Typography>
             </div>
             <br />

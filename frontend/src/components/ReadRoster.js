@@ -1,19 +1,19 @@
-import { Button } from '@material-ui/core';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import { Typography } from '@material-ui/core';
+import { Button } from "@material-ui/core";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import React from "react";
+import { withStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableRow from "@material-ui/core/TableRow";
+import { Typography } from "@material-ui/core";
 
-const styles = theme => ({});
+const styles = (theme) => ({});
 
 class ReadRoster extends React.Component {
   state = { rosterLoading: true, done: [], notDone: [], dialogOpen: false };
@@ -22,7 +22,7 @@ class ReadRoster extends React.Component {
     return () => {
       const { roster, requestScript } = this.props;
       if (this._isMounted) this.setState({ rosterLoading: true });
-      roster(roomCode, gameName).then(d => {
+      roster(roomCode, gameName).then((d) => {
         if (d.status === 200) {
           if (this._isMounted) {
             if (d.data.notDone.length < 1) {
@@ -32,14 +32,14 @@ class ReadRoster extends React.Component {
             this.setState({
               rosterLoading: false,
               done: d.data.done,
-              notDone: d.data.notDone
+              notDone: d.data.notDone,
             });
           }
         }
       });
     };
   };
-  onDialogClose = event => {
+  onDialogClose = (event) => {
     if (this._isMounted) this.setState({ dialogOpen: false });
   };
   confirmRequestScript = () => {
@@ -54,7 +54,7 @@ class ReadRoster extends React.Component {
     const { confirmedRoomCode, confirmedGameName } = this.props;
     const {
       confirmedRoomCode: prevCode,
-      confirmedGameName: prevName
+      confirmedGameName: prevName,
     } = prevProps;
     if (confirmedRoomCode === prevCode && confirmedGameName === prevName)
       return;
@@ -89,7 +89,7 @@ class ReadRoster extends React.Component {
       <div>
         <div>
           <Typography component="p" paragraph>
-            These sedergoers have submitted their answers:
+            These seshgoers have submitted their answers:
           </Typography>
         </div>
         <div>

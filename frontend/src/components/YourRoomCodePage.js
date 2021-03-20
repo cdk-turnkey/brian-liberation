@@ -1,21 +1,21 @@
-import { Configs } from '../Configs';
-import Divider from '@material-ui/core/Divider';
-import React, { Component } from 'react';
-import MenuAppBar from './MenuAppBar';
-import PropTypes from 'prop-types';
-import TextField from '@material-ui/core/TextField';
-import { Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { Configs } from "../Configs";
+import Divider from "@material-ui/core/Divider";
+import React, { Component } from "react";
+import MenuAppBar from "./MenuAppBar";
+import PropTypes from "prop-types";
+import TextField from "@material-ui/core/TextField";
+import { Typography } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
-import ThatsMyNameButtonWithRouter from './ThatsMyNameButtonWithRouter';
+import ThatsMyNameButtonWithRouter from "./ThatsMyNameButtonWithRouter";
 
-const styles = theme => ({
+const styles = (theme) => ({
   button: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   input: {
-    display: 'none'
-  }
+    display: "none",
+  },
 });
 
 class YourRoomCodePage extends Component {
@@ -23,23 +23,23 @@ class YourRoomCodePage extends Component {
     tentativeGameName: false,
     thatsMyNameButtonPressed: false,
     failedAttempt: false,
-    failureMessage: ''
+    failureMessage: "",
   };
   _isMounted = false;
   componentDidMount() {
     this._isMounted = true;
     const { confirmedRoomCode, setConfirmedRoomCode } = this.props;
-    if (!confirmedRoomCode && localStorage.getItem('roomCode')) {
-      setConfirmedRoomCode(localStorage.getItem('roomCode'));
+    if (!confirmedRoomCode && localStorage.getItem("roomCode")) {
+      setConfirmedRoomCode(localStorage.getItem("roomCode"));
     }
   }
   componentWillUnmount() {
     this._isMounted = false;
   }
-  gameNameChanged = event => {
+  gameNameChanged = (event) => {
     event.target.value = event.target.value.replace(
       Configs.gameNameBlacklist(),
-      ''
+      ""
     );
     if (event.target.value.length > 0) {
       this.setState({ tentativeGameName: event.target.value });
@@ -47,35 +47,37 @@ class YourRoomCodePage extends Component {
       this.setState({ tentativeGameName: false });
     }
   };
-  joinSederAndGoToRoster = history => {
+  joinSederAndGoToRoster = (history) => {
     const { joinSeder, setConfirmedGameName, user } = this.props;
     let { confirmedRoomCode } = this.props;
     this.setState({ thatsMyNameButtonPressed: true });
-    if (!confirmedRoomCode && this.localStorage.getItem('roomCode')) {
-      confirmedRoomCode = this.localStorage.getItem('roomCode');
+    if (!confirmedRoomCode && this.localStorage.getItem("roomCode")) {
+      confirmedRoomCode = this.localStorage.getItem("roomCode");
     }
-    joinSeder(confirmedRoomCode, this.state.tentativeGameName, user).then(d => {
-      if (!this._isMounted) return;
-      if (d.status === 200) {
-        setConfirmedGameName(d.data.gameName);
-        history.push('/roster');
-      } else {
-        this.setState({ failedAttempt: true });
-        if (d.err === Configs.generic400ErrorMessage) {
-          this.setState({
-            failureMessage:
-              'We could not join you to your own seder with that Game Name. ' +
-              'Please make sure it has not been more than ' +
-              Configs.msToJoinSeder() / 1000 / 60 +
-              ' minutes since you got your code, and ' +
-              'try again, or try a different Game Name'
-          });
+    joinSeder(confirmedRoomCode, this.state.tentativeGameName, user).then(
+      (d) => {
+        if (!this._isMounted) return;
+        if (d.status === 200) {
+          setConfirmedGameName(d.data.gameName);
+          history.push("/roster");
         } else {
-          this.setState({ failureMessage: d.data.err });
+          this.setState({ failedAttempt: true });
+          if (d.err === Configs.generic400ErrorMessage) {
+            this.setState({
+              failureMessage:
+                "We could not join you to your own sesh with that Game Name. " +
+                "Please make sure it has not been more than " +
+                Configs.msToJoinSeder() / 1000 / 60 +
+                " minutes since you got your code, and " +
+                "try again, or try a different Game Name",
+            });
+          } else {
+            this.setState({ failureMessage: d.data.err });
+          }
         }
+        if (this._isMounted) this.setState({ thatsMyNameButtonPressed: false });
       }
-      if (this._isMounted) this.setState({ thatsMyNameButtonPressed: false });
-    });
+    );
   };
 
   render() {
@@ -91,16 +93,16 @@ class YourRoomCodePage extends Component {
         </Typography>
         <br />
         <Typography component="p">
-          Tell everyone physically at your seder to go to{' '}
+          Tell everyone at your sesh to go to{" "}
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://passover.lol"
+            href="https://brian-liberation.com"
           >
-            passover.lol
-          </a>{' '}
+            brian-liberation.com
+          </a>{" "}
           (opens in a new tab) on their computer or mini-computer, click "Join a
-          Seder", and enter that Room Code to join you virtually.
+          Sesh", and enter that Room Code to join you virtually.
         </Typography>
         <br />
         <div>
@@ -114,7 +116,7 @@ class YourRoomCodePage extends Component {
         <div>
           <Typography component="p" paragraph gutterBottom>
             What's your <label htmlFor="leader-game-name">name</label>? It's how
-            you, personally, will be known throughout this seder.
+            you, personally, will be known throughout this sesh.
           </Typography>
         </div>
         <div>
@@ -162,7 +164,7 @@ YourRoomCodePage.propTypes = {
   setConfirmedRoomCode: PropTypes.func.isRequired,
   setConfirmedGameName: PropTypes.func.isRequired,
   confirmedRoomCode: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
-    .isRequired
+    .isRequired,
 };
 
 export default withStyles(styles)(YourRoomCodePage);

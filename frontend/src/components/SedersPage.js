@@ -144,7 +144,7 @@ function SedersPage({
       <div>
         <br />
         <Typography variant="h4" gutterBottom>
-          You are or were in seders with these Room Codes:
+          You are or were in seshes with these Room Codes:
         </Typography>
       </div>
       {seders.size ? (
@@ -216,7 +216,7 @@ function SedersPage({
                 setButtonClicked(false);
               }}
             >
-              Resume seder
+              Resume sesh
             </Button>
           </div>
         </>

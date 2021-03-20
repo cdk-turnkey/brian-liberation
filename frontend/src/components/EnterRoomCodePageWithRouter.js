@@ -1,20 +1,20 @@
-import Button from '@material-ui/core/Button';
-import MenuAppBar from './MenuAppBar';
-import React, { Component } from 'react';
-import TextField from '@material-ui/core/TextField';
-import { Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-import { withRouter } from 'react-router-dom';
+import Button from "@material-ui/core/Button";
+import MenuAppBar from "./MenuAppBar";
+import React, { Component } from "react";
+import TextField from "@material-ui/core/TextField";
+import { Typography } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+import { withRouter } from "react-router-dom";
 
-import { Configs } from '../Configs';
+import { Configs } from "../Configs";
 
-const styles = theme => ({
+const styles = (theme) => ({
   button: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   input: {
-    display: 'none'
-  }
+    display: "none",
+  },
 });
 
 class EnterRoomCodePage extends Component {
@@ -24,18 +24,18 @@ class EnterRoomCodePage extends Component {
     joinSederResponse: false,
     joinButtonPressed: false,
     failedAttempt: false,
-    failureMessage: ''
+    failureMessage: "",
   };
   _isMounted = false;
   joinSederCatchAllErrorMessage =
-    'We could not join you to this ' +
-    'seder, please double-check your Room Code, make sure it is not more' +
-    ' than ' +
+    "We could not join you to this " +
+    "sesh, please double-check your Room Code, make sure it is not more" +
+    " than " +
     Configs.msToJoinSeder() / 1000 / 60 +
-    ' minutes old, and ' +
-    'try again, or try a different Game Name or with a different browser' +
-    ' or device';
-  enableJoinIfCodeValid = event => {
+    " minutes old, and " +
+    "try again, or try a different Game Name or with a different browser" +
+    " or device";
+  enableJoinIfCodeValid = (event) => {
     event.target.value = event.target.value.toUpperCase();
     if (
       event.target.value &&
@@ -46,10 +46,10 @@ class EnterRoomCodePage extends Component {
       this.setState({ tentativeRoomCode: false });
     }
   };
-  enableJoinIfNameGiven = event => {
+  enableJoinIfNameGiven = (event) => {
     event.target.value = event.target.value.replace(
       Configs.gameNameBlacklist(),
-      ''
+      ""
     );
     if (event.target.value.length > 0) {
       this.setState({ tentativeGameName: event.target.value });
@@ -63,24 +63,24 @@ class EnterRoomCodePage extends Component {
       setConfirmedGameName,
       joinSeder,
       history,
-      user
+      user,
     } = this.props;
     this.setState({ joinButtonPressed: true });
     joinSeder(
       this.state.tentativeRoomCode,
       this.state.tentativeGameName,
       user
-    ).then(d => {
+    ).then((d) => {
       this.setState({ joinSederResponse: d });
       if (d.status === 200) {
         setConfirmedRoomCode(d.data.roomCode);
         setConfirmedGameName(d.data.gameName);
-        history.push('/you-have-joined');
+        history.push("/you-have-joined");
       } else {
         this.setState({ failedAttempt: true });
         if (d.data.err === Configs.generic400ErrorMessage) {
           this.setState({
-            failureMessage: this.joinSederCatchAllErrorMessage
+            failureMessage: this.joinSederCatchAllErrorMessage,
           });
         } else {
           this.setState({ failureMessage: d.data.err });
@@ -103,16 +103,16 @@ class EnterRoomCodePage extends Component {
         <div>
           <br />
           <Typography variant="h3" gutterBottom>
-            You're at a seder!
+            You're at a sesh!
           </Typography>
           <br />
         </div>
         <div>
           <div>
             <Typography component="p" paragraph gutterBottom>
-              Prove it. Enter the{' '}
+              Prove it. Enter the{" "}
               <label htmlFor="player-room-code">Room Code</label> that your
-              sedermaker gave you verbally.
+              leader gave you verbally.
             </Typography>
           </div>
           <div>

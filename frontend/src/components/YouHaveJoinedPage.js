@@ -1,19 +1,19 @@
-import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
-import MenuAppBar from './MenuAppBar';
-import React, { Component } from 'react';
-import { Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
+import MenuAppBar from "./MenuAppBar";
+import React, { Component } from "react";
+import { Typography } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
-import { madLiberationStyles } from '../madLiberationStyles';
+import { madLiberationStyles } from "../madLiberationStyles";
 
-const styles = theme => ({
+const styles = (theme) => ({
   button: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   input: {
-    display: 'none'
-  }
+    display: "none",
+  },
 });
 
 class EnterRoomCodePage extends Component {
@@ -22,16 +22,16 @@ class EnterRoomCodePage extends Component {
       confirmedRoomCode,
       confirmedGameName,
       setConfirmedRoomCode,
-      setConfirmedGameName
+      setConfirmedGameName,
     } = this.props;
     if (
       !confirmedRoomCode &&
       !confirmedGameName &&
-      localStorage.getItem('roomCode') &&
-      localStorage.getItem('gameName')
+      localStorage.getItem("roomCode") &&
+      localStorage.getItem("gameName")
     ) {
-      setConfirmedRoomCode(localStorage.getItem('roomCode'));
-      setConfirmedGameName(localStorage.getItem('gameName'));
+      setConfirmedRoomCode(localStorage.getItem("roomCode"));
+      setConfirmedGameName(localStorage.getItem("gameName"));
     }
   }
   render() {
@@ -45,11 +45,11 @@ class EnterRoomCodePage extends Component {
         <br />
         <div>
           <Typography component="p" paragraph>
-            You have joined Seder{' '}
+            You have joined Sesh{" "}
             <span style={madLiberationStyles.lightGrayBackround}>
               {confirmedRoomCode}
-            </span>{' '}
-            as{' '}
+            </span>{" "}
+            as{" "}
             <span style={madLiberationStyles.lightGrayBackround}>
               {confirmedGameName}
             </span>
@@ -57,7 +57,7 @@ class EnterRoomCodePage extends Component {
           </Typography>
           <Typography variant="h1">Wait</Typography>
           <Typography component="p" paragraph gutterBottom>
-            until your Sederator tells you to, and then
+            until your Seshmaker tells you to, and then
           </Typography>
           <div>
             <Button
