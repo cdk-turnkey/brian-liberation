@@ -156,7 +156,7 @@ class App extends Component {
                 )}
               ></Route>
               <Route
-                path="/seders"
+                path="/seshes"
                 exact
                 render={(props) => (
                   <SedersPageWithRouter

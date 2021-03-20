@@ -103,11 +103,11 @@ class HomePage extends Component {
                     <Typography component="p">
                       <Button
                         component={Link}
-                        to="/seders"
+                        to="/seshes"
                         title="see-your-seders-button"
                         madliberationid="see-your-seders-button"
                       >
-                        See your seders
+                        See your seshes
                       </Button>
                     </Typography>
                   </div>
