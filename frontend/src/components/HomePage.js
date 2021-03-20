@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import RedSeaImage from "../grand-lake-in-oklahoma.jpg";
-import MadLiberationLogo from "../mad-liberation-logo.png";
-import VeryAwesomePassoverLogo from "../VAPLogo-white.png";
+import HomePageBackgroundImage from "../grand-lake-in-oklahoma.jpg";
 import { Configs } from "../Configs";
 import { madLiberationStyles } from "../madLiberationStyles";
 import Paper from "@material-ui/core/Paper";
@@ -14,7 +12,7 @@ const styles = () => {
   return {
     ...madLiberationStyles,
     homePageBackground: {
-      backgroundImage: `url(${RedSeaImage})`,
+      backgroundImage: `url(${HomePageBackgroundImage})`,
       minHeight: "100%",
       width: "100%",
       height: "auto",
