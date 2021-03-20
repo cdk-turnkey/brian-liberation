@@ -38,7 +38,7 @@ import SedersPageWithRouter from "./components/SedersPageWithRouter";
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: "#81181f" },
+    primary: { main: "#3254a8" },
   },
   typography: { useNextVariants: true },
 });
