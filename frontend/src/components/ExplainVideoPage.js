@@ -28,7 +28,7 @@ class ExplainVideoPage extends Component {
           <br />
           <div className={classes.bordered}>
             <Typography variant="h1" component="h2" gutterBottom>
-              Order! Order! Order!
+              Hello
             </Typography>
             <Typography component="p" paragraph>
               Dear Leader (of this virtual sesh), follow these instructions to
