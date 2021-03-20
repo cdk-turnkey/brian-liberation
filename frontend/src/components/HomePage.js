@@ -43,7 +43,16 @@ class HomePage extends Component {
       <div className={classes.homePageBackground}>
         <div>
           <div>
-            <h1 style={{ color: "#fcfcfa" }}>Brian Liberation</h1>
+            <h1
+              style={{
+                color: "#fcfcfa",
+                wordBreak: "break-all",
+                padding: "3px",
+                margin: "2px",
+              }}
+            >
+              Brian Liberation
+            </h1>
           </div>
           <div>
             <Button
