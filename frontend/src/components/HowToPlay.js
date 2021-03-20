@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import MenuAppBar from './MenuAppBar';
-import { withStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import React, { Component } from "react";
+import MenuAppBar from "./MenuAppBar";
+import { withStyles } from "@material-ui/core/styles";
+import { Typography } from "@material-ui/core";
 
-const styles = theme => ({
+const styles = (theme) => ({
   button: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   input: {
-    display: 'none'
-  }
+    display: "none",
+  },
 });
 
 class HowToPlay extends Component {
@@ -23,8 +23,8 @@ class HowToPlay extends Component {
             How to Play
           </Typography>
           <Typography component="p">
-            Mad Liberation is a game of seeking freedom through imagination and
-            creativity
+            Brian Liberation is a game of seeking freedom through imagination
+            and creativity
           </Typography>
           <br />
           <Typography component="p">

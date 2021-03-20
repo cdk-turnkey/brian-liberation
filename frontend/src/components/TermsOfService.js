@@ -27,7 +27,7 @@ class TermsOfService extends Component {
               }}
             />
             <h1>Terms and Conditions</h1>
-            <p>Last updated: March 18, 2021</p>
+            <p>Last updated: March 19, 2021</p>
             <p>
               Please read these terms and conditions carefully before using Our
               Service.
@@ -68,7 +68,7 @@ class TermsOfService extends Component {
                 <p>
                   <strong>Company</strong> (referred to as either &quot;the
                   Company&quot;, &quot;We&quot;, &quot;Us&quot; or
-                  &quot;Our&quot; in this Agreement) refers to Mad Liberation.
+                  &quot;Our&quot; in this Agreement) refers to Brian Liberation.
                 </p>
               </li>
               <li>
@@ -115,14 +115,14 @@ class TermsOfService extends Component {
               </li>
               <li>
                 <p>
-                  <strong>Website</strong> refers to Mad Liberation, accessible
-                  from
+                  <strong>Website</strong> refers to Brian Liberation,
+                  accessible from
                   <a
-                    href="https://passover.lol"
+                    href="https://brian-liberation.com"
                     rel="external nofollow noopener"
                     target="_blank"
                   >
-                    https://passover.lol
+                    https://brian-liberation.com
                   </a>
                 </p>
               </li>
@@ -311,9 +311,9 @@ class TermsOfService extends Component {
               You believe that the copyrighted work has been copied in a way
               that constitutes copyright infringement that is taking place
               through the Service, You must submit Your notice in writing to the
-              attention of our copyright agent via email at admin@passover.lol
-              and include in Your notice a detailed description of the alleged
-              infringement.
+              attention of our copyright agent via email at
+              admin+brian@passover.lol and include in Your notice a detailed
+              description of the alleged infringement.
             </p>
             <p>
               You may be held accountable for damages (including costs and
@@ -360,10 +360,10 @@ class TermsOfService extends Component {
             </ul>
             <p>
               You can contact our copyright agent via email at
-              admin@passover.lol. Upon receipt of a notification, the Company
-              will take whatever action, in its sole discretion, it deems
-              appropriate, including removal of the challenged content from the
-              Service.
+              admin+brian@passover.lol. Upon receipt of a notification, the
+              Company will take whatever action, in its sole discretion, it
+              deems appropriate, including removal of the challenged content
+              from the Service.
             </p>
             <h1>Intellectual Property</h1>
             <p>
@@ -563,17 +563,17 @@ class TermsOfService extends Component {
             </p>
             <ul>
               <li>
-                <p>By email: admin@passover.lol</p>
+                <p>By email: admin+brian@passover.lol</p>
               </li>
               <li>
                 <p>
                   By visiting this page on our website:
                   <a
-                    href="https://passover.lol/#/contact-us"
+                    href="https://brian-liberation.com/#/contact-us"
                     rel="external nofollow noopener"
                     target="_blank"
                   >
-                    https://passover.lol/#/contact-us
+                    https://brian-liberation.com/#/contact-us
                   </a>
                 </p>
               </li>

@@ -23,7 +23,10 @@ class ContactUs extends Component {
             Contact Us
           </Typography>
           <Typography component="p" paragraph gutterBottom>
-            Email <a href="mailto:admin@passover.lol">admin@passover.lol</a>{" "}
+            Email{" "}
+            <a href="mailto:admin+brian@passover.lol">
+              admin+brian@passover.lol
+            </a>{" "}
             with any concerns.
           </Typography>
           <Typography component="p" paragraph gutterBottom>
@@ -33,11 +36,12 @@ class ContactUs extends Component {
           <Typography component="p" paragraph gutterBottom>
             If you have logged in with a social media site like Facebook, you
             can email us to request that any of your data that we have obtained
-            from the social media site about you be deleted from Mad Liberation.
+            from the social media site about you be deleted from Brian
+            Liberation.
           </Typography>
           <Typography component="p" paragraph gutterBottom>
             If you have logged in with your email address, you can email us to
-            request that we delete your email address from Mad Liberation.
+            request that we delete your email address from Brian Liberation.
           </Typography>
         </div>
       </div>

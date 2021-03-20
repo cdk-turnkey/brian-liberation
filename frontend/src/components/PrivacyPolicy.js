@@ -47,7 +47,7 @@ class PrivacyPolicy extends Component {
                   <strong>
                     <span data-custom-class="subtitle">
                       Last updated{' '}
-                      <bdt className="question">February 24, 2020</bdt>
+                      <bdt className="question">March 19, 2021</bdt>
                     </span>
                   </strong>
                 </span>
@@ -59,7 +59,7 @@ class PrivacyPolicy extends Component {
                 <span style={{ color: 'rgb(89, 89, 89)' }}>
                   <span data-custom-class="body_text">
                     Thank you for choosing to be part of our community at{' '}
-                    <bdt className="question">Very Awesome Passover</bdt>
+                    <bdt className="question">Brian Liberation</bdt>
                     <bdt className="block-component" /> (“
                     <bdt className="block-component" />
                     <strong>Company</strong>
@@ -79,7 +79,7 @@ class PrivacyPolicy extends Component {
                     </span>
                     , or our practices with regards to your personal
                     information, please contact us at{' '}
-                    <bdt className="question">admin@passover.lol</bdt>.
+                    <bdt className="question">admin+brian@passover.lol</bdt>.
                   </span>
                 </span>
               </p>
@@ -87,7 +87,7 @@ class PrivacyPolicy extends Component {
                 <span style={{ color: 'rgb(89, 89, 89)' }}>
                   <span data-custom-class="body_text">
                     When you visit our <bdt className="block-component" />
-                    website <bdt className="question">https://passover.lol</bdt>
+                    website <bdt className="question">https://brian-liberation.com</bdt>
                     ,<bdt className="statement-end-if-in-editor" />
                     <bdt className="block-component" /> and use our services,
                     you trust us with your personal information. We take your
@@ -148,7 +148,7 @@ class PrivacyPolicy extends Component {
                     <bdt className="forloop-component" />
                     <bdt className="question">website</bdt>
                     <bdt className="forloop-component" /> (such as{' '}
-                    <bdt className="question">https://passover.lol</bdt>),{' '}
+                    <bdt className="question">https://brian-liberation.com</bdt>),{' '}
                     <bdt className="statement-end-if-in-editor" />
                     <bdt className="block-component" /> and/or any related
                     services, sales, marketing or events (we refer to them
@@ -3411,7 +3411,7 @@ class PrivacyPolicy extends Component {
                                                       privacy rights, you may
                                                       email us at{' '}
                                                       <bdt className="question">
-                                                        admin@passover.lol
+                                                        admin+brian@passover.lol
                                                       </bdt>
                                                       .
                                                     </span>
@@ -3791,7 +3791,7 @@ class PrivacyPolicy extends Component {
                                                   be notified about data
                                                   breaches when{' '}
                                                   <bdt className="question">
-                                                    Very Awesome Passover
+                                                    Brian Liberation
                                                   </bdt>{' '}
                                                   believes you are likely to be
                                                   at risk or serious harm. For
@@ -3801,7 +3801,7 @@ class PrivacyPolicy extends Component {
                                                   mental or physical well-being.
                                                   In the event that{' '}
                                                   <bdt className="question">
-                                                    Very Awesome Passover
+                                                    Brian Liberation
                                                   </bdt>{' '}
                                                   becomes aware of a security
                                                   breach which has resulted or
@@ -3809,7 +3809,7 @@ class PrivacyPolicy extends Component {
                                                   access, use or disclosure of
                                                   personal information{' '}
                                                   <bdt className="question">
-                                                    Very Awesome Passover
+                                                    Brian Liberation
                                                   </bdt>{' '}
                                                   will promptly investigate the
                                                   matter and notify the
@@ -4368,7 +4368,7 @@ class PrivacyPolicy extends Component {
                                                       }}
                                                     >
                                                       <span data-custom-class="body_text">
-                                                        Very Awesome Passover
+                                                        Brian Liberation
                                                       </span>
                                                     </span>{' '}
                                                   </bdt>
@@ -4612,9 +4612,9 @@ class PrivacyPolicy extends Component {
                                                     color:
                                                       'rgb(48, 48, 241) !important'
                                                   }}
-                                                  href="mailto:admin@passover.lol"
+                                                  href="mailto:admin+brian@passover.lol"
                                                 >
-                                                  admin@passover.lol
+                                                  admin+brian@passover.lol
                                                 </a>
                                                 . We will respond to your
                                                 request within 30 days.
