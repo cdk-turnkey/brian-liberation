@@ -1,15 +1,15 @@
-import Button from '@material-ui/core/Button';
-import { madLiberationStyles } from '../madLiberationStyles';
-import React from 'react';
-import { Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-import Answer from './Answer';
-import StageDirection from './StageDirection';
+import Button from "@material-ui/core/Button";
+import { madLiberationStyles } from "../madLiberationStyles";
+import React from "react";
+import { Typography } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+import Answer from "./Answer";
+import StageDirection from "./StageDirection";
 
-const styles = theme => ({});
+const styles = (theme) => ({});
 class Page extends React.Component {
   state = {
-    readyForContent: false
+    readyForContent: false,
   };
   _isMounted = false;
   setReadyForContent = () => {
@@ -34,7 +34,7 @@ class Page extends React.Component {
       pageIndex,
       incrementPageIndex,
       decrementPageIndex,
-      pageCount
+      pageCount,
     } = this.props;
     if (!Array.isArray(page.lines) || page.lines.length < 1) {
       return <div />;
@@ -46,14 +46,14 @@ class Page extends React.Component {
         return;
       }
       line.segments.forEach((segment, segmentIndex) => {
-        if (segment.type === 'text') {
+        if (segment.type === "text") {
           segments.push(
             <span key={`segment-${lineIndex}-${segmentIndex}`}>
               {segment.text}
             </span>
           );
         }
-        if (segment.type === 'lib') {
+        if (segment.type === "lib") {
           segments.push(
             <Answer
               mlid={
@@ -69,56 +69,56 @@ class Page extends React.Component {
           );
         }
       });
-      if (line.type === 'h1') {
+      if (line.type === "h1") {
         lines.push(
           <Typography variant="h1" key={`line-${lineIndex}`} gutterBottom>
             {segments}
           </Typography>
         );
       }
-      if (line.type === 'h2') {
+      if (line.type === "h2") {
         lines.push(
           <Typography variant="h2" key={`line-${lineIndex}`} gutterBottom>
             {segments}
           </Typography>
         );
       }
-      if (line.type === 'h3') {
+      if (line.type === "h3") {
         lines.push(
           <Typography variant="h3" key={`line-${lineIndex}`} gutterBottom>
             {segments}
           </Typography>
         );
       }
-      if (line.type === 'h4') {
+      if (line.type === "h4") {
         lines.push(
           <Typography variant="h4" key={`line-${lineIndex}`} gutterBottom>
             {segments}
           </Typography>
         );
       }
-      if (line.type === 'h5') {
+      if (line.type === "h5") {
         lines.push(
           <Typography variant="h5" key={`line-${lineIndex}`} gutterBottom>
             {segments}
           </Typography>
         );
       }
-      if (line.type === 'h6') {
+      if (line.type === "h6") {
         lines.push(
           <Typography variant="h6" key={`line-${lineIndex}`} gutterBottom>
             {segments}
           </Typography>
         );
       }
-      if (line.type === 'p') {
+      if (line.type === "p") {
         lines.push(
           <Typography component="p" key={`line-${lineIndex}`} paragraph>
             {segments}
           </Typography>
         );
       }
-      if (line.type === 'indent') {
+      if (line.type === "indent") {
         lines.push(
           <Typography component="p" key={`line-${lineIndex}`}>
             <span style={madLiberationStyles.italic}>{segments}</span>
@@ -126,7 +126,7 @@ class Page extends React.Component {
         );
         if (
           lineIndex < page.lines.length - 1 &&
-          page.lines[lineIndex + 1].type !== 'indent'
+          page.lines[lineIndex + 1].type !== "indent"
         ) {
           lines.push(
             <div key={`br-after-line-${lineIndex}`}>
@@ -135,7 +135,7 @@ class Page extends React.Component {
           );
         }
       }
-      if (line.type === 'stageDirection') {
+      if (line.type === "stageDirection") {
         lines.push(
           <Typography component="p" key={`line-${lineIndex}`}>
             <span style={madLiberationStyles.boldItalicLightBlueBackground}>
@@ -147,15 +147,15 @@ class Page extends React.Component {
     });
 
     if (!this.state.readyForContent) {
-      let passTo = 'the next reader';
-      if (pageIndex === 0) passTo = 'the first reader';
-      if (page.youngest === 'to') {
-        passTo = 'the youngest person here';
+      let passTo = "the next reader";
+      if (pageIndex === 0) passTo = "the first reader";
+      if (page.youngest === "to") {
+        passTo = "the youngest person here";
       }
-      if (page.youngest === 'from') {
+      if (page.youngest === "from") {
         passTo =
-          'the person AFTER the person who handed it to you, passing over' +
-          ' yourself if you would be next';
+          "the person AFTER the person who handed it to you, passing over" +
+          " yourself if you would be next";
       }
       return (
         <div madliberationid="pass-this-device" mlnoncontent="true">
