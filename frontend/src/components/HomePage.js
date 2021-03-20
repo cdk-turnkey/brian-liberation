@@ -45,11 +45,7 @@ class HomePage extends Component {
       <div className={classes.homePageBackground}>
         <div>
           <div>
-            <img
-              alt="Mad Liberation: Let My People LOL"
-              src={MadLiberationLogo}
-              className={classes.madliberationLogo}
-            />
+            <h1 style={{ color: "#fcfcfa" }}>Brian Liberation</h1>
           </div>
           <div>
             <Button
@@ -137,12 +133,6 @@ class HomePage extends Component {
             </>
           )}
           <br />
-          <br />
-          <img
-            alt="Very Awesome Passover"
-            src={VeryAwesomePassoverLogo}
-            className={classes.veryAwesomePassoverLogo}
-          />
           <br />
           <br />
           <div>
