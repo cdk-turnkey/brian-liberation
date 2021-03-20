@@ -138,6 +138,11 @@ class HomePage extends Component {
               <a href="#/about">About</a>
             </Typography>
           </div>
+          <div>
+            <Typography component="p">
+              <a href="#/photo-credit">Photo credit</a>
+            </Typography>
+          </div>
         </div>
       </div>
     );

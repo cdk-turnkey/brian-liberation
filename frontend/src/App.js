@@ -35,6 +35,7 @@ import TermsOfService from "./components/TermsOfService";
 import ContactUs from "./components/ContactUs";
 import ExplainVideoPage from "./components/ExplainVideoPage";
 import SedersPageWithRouter from "./components/SedersPageWithRouter";
+import PhotoCredit from "./components/PhotoCredit";
 
 const theme = createMuiTheme({
   palette: {
@@ -207,6 +208,11 @@ class App extends Component {
                 path="/about"
                 exact
                 render={(props) => <About {...props} />}
+              />
+              <Route
+                path="/photo-credit"
+                exact
+                render={(props) => <PhotoCredit {...props} />}
               />
               <Route
                 path="/how-to-play"
