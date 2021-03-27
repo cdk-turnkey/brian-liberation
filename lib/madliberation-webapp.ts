@@ -172,7 +172,7 @@ export class MadliberationWebapp extends cdk.Stack {
       standardAttributes: {
         email: {
           required: true,
-          mutable: false,
+          mutable: true,
         },
         nickname: {
           required: true,
