@@ -109,20 +109,20 @@ jobs:
         run: |
           bash deploy-content.sh
 
-      - name: Install itest
-        working-directory: itest
-        run: |
-          npm install
+      # - name: Install itest
+      #   working-directory: itest
+      #   run: |
+      #     npm install
 
-      - name: Run integration tests, test account
-        working-directory: scripts
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.TEST_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.TEST_AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: "us-east-1"
-          AWS_REGION: "us-east-1"
-        run: |
-          bash itest.sh
+      # - name: Run integration tests, test account
+      #   working-directory: scripts
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.TEST_AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.TEST_AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: "us-east-1"
+      #     AWS_REGION: "us-east-1"
+      #   run: |
+      #     bash itest.sh
 
       - name: Identify prod account and region
         env:
@@ -160,12 +160,12 @@ jobs:
         run: |
           bash deploy-content.sh
 
-      - name: Run integration tests, prod account
-        working-directory: scripts
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: "us-east-1"
-          AWS_REGION: "us-east-1"
-        run: |
-          bash itest.sh
+      # - name: Run integration tests, prod account
+      #   working-directory: scripts
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: "us-east-1"
+      #     AWS_REGION: "us-east-1"
+      #   run: |
+      #     bash itest.sh
