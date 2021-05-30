@@ -193,11 +193,10 @@ const submitAllLibs = async (page, prefix) => {
 
   const AWS = require("aws-sdk");
   const createUser = async (userName, tempPassword) => {
-    const cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider(
-      {
+    const cognitoidentityserviceprovider =
+      new AWS.CognitoIdentityServiceProvider({
         apiVersion: "2016-04-18",
-      }
-    );
+      });
     const adminCreateUserParams = {
       UserPoolId: userPoolId,
       Username: userName,
