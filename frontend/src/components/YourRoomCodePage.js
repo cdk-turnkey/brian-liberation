@@ -122,7 +122,7 @@ class YourRoomCodePage extends Component {
         <div>
           <TextField
             madliberationid="ringleader-game-name-text-field"
-            helperText="your nickname this seder"
+            helperText="your nickname this sesh"
             variant="outlined"
             onChange={this.gameNameChanged}
             id="leader-game-name"

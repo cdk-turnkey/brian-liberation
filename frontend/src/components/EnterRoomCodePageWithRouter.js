@@ -133,7 +133,7 @@ class EnterRoomCodePage extends Component {
           <div>
             <TextField
               madliberationid="game-name-text-field"
-              helperText="it's who you are for this seder"
+              helperText="it's who you are for this sesh"
               variant="outlined"
               onChange={this.enableJoinIfNameGiven}
               id="player-game-name"
