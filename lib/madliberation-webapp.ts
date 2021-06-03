@@ -104,7 +104,15 @@ export class MadliberationWebapp extends cdk.Stack {
       projectionType: dynamodb.ProjectionType.ALL,
     });
 
-    const frontendBucket = new s3.Bucket(this, "FrontendBucket");
+    const frontendLogBucket = new s3.Bucket(this, "FrontendLogBucket");
+    const frontendBucket = new s3.Bucket(this, "FrontendBucket", {
+      serverAccessLogsBucket: frontendLogBucket,
+    });
+    const nonCFLogBucket = new s3.Bucket(this, "NonCFLogBucket");
+    const nonCFBucket = new s3.Bucket(this, "NonCFBucket", {
+      serverAccessLogsBucket: nonCFLogBucket,
+      accessControl: s3.BucketAccessControl.PUBLIC_READ,
+    });
 
     // This is so a script can find the bucket and deploy to it.
     // I can't wrap up the artifact at cdk-deploy time, because the CDK Level-3
@@ -193,19 +201,19 @@ export class MadliberationWebapp extends cdk.Stack {
           `${fromAddress}`,
       };
     }
-    const clientWriteAttributes = new cognito.ClientAttributes().withStandardAttributes(
-      { nickname: true, email: true }
-    );
+    const clientWriteAttributes =
+      new cognito.ClientAttributes().withStandardAttributes({
+        nickname: true,
+        email: true,
+      });
     const clientReadAttributes = clientWriteAttributes.withStandardAttributes({
       emailVerified: true,
     });
     const webappDomainName = domainName || distro.distributionDomainName;
 
     if (facebookAppId && facebookAppSecret) {
-      const userPoolIdentityProviderFacebook = new cognito.UserPoolIdentityProviderFacebook(
-        this,
-        "Facebook",
-        {
+      const userPoolIdentityProviderFacebook =
+        new cognito.UserPoolIdentityProviderFacebook(this, "Facebook", {
           clientId: facebookAppId,
           clientSecret: facebookAppSecret,
           userPool,
@@ -223,15 +231,12 @@ export class MadliberationWebapp extends cdk.Stack {
             nickname: cognito.ProviderAttribute.FACEBOOK_NAME,
             email: cognito.ProviderAttribute.FACEBOOK_EMAIL,
           },
-        }
-      );
+        });
       userPool.registerIdentityProvider(userPoolIdentityProviderFacebook);
     }
     if (amazonClientId && amazonClientSecret) {
-      const userPoolIdentityProviderAmazon = new cognito.UserPoolIdentityProviderAmazon(
-        this,
-        "Amazon",
-        {
+      const userPoolIdentityProviderAmazon =
+        new cognito.UserPoolIdentityProviderAmazon(this, "Amazon", {
           clientId: amazonClientId,
           clientSecret: amazonClientSecret,
           userPool,
@@ -239,15 +244,12 @@ export class MadliberationWebapp extends cdk.Stack {
             nickname: cognito.ProviderAttribute.AMAZON_NAME,
             email: cognito.ProviderAttribute.AMAZON_EMAIL,
           },
-        }
-      );
+        });
       userPool.registerIdentityProvider(userPoolIdentityProviderAmazon);
     }
     if (googleClientId && googleClientSecret) {
-      const userPoolIdentityProviderGoogle = new cognito.UserPoolIdentityProviderGoogle(
-        this,
-        "Google",
-        {
+      const userPoolIdentityProviderGoogle =
+        new cognito.UserPoolIdentityProviderGoogle(this, "Google", {
           clientId: googleClientId,
           clientSecret: googleClientSecret,
           userPool,
@@ -256,8 +258,7 @@ export class MadliberationWebapp extends cdk.Stack {
             nickname: cognito.ProviderAttribute.GOOGLE_NAME,
             email: cognito.ProviderAttribute.GOOGLE_EMAIL,
           },
-        }
-      );
+        });
       userPool.registerIdentityProvider(userPoolIdentityProviderGoogle);
     }
 
@@ -365,7 +366,8 @@ export class MadliberationWebapp extends cdk.Stack {
           "BackendORP",
           {
             cookieBehavior: cloudfront.OriginRequestCookieBehavior.all(),
-            queryStringBehavior: cloudfront.OriginRequestQueryStringBehavior.all(),
+            queryStringBehavior:
+              cloudfront.OriginRequestQueryStringBehavior.all(),
           }
         ),
       }
