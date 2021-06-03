@@ -430,6 +430,15 @@ export class MadliberationWebapp extends cdk.Stack {
     new cdk.CfnOutput(this, "FrontendBucketNameParamName", {
       value: frontendBucketNameParam.parameterName,
     });
+    new cdk.CfnOutput(this, "FrontendLogBucketName", {
+      value: frontendLogBucket.bucketName,
+    });
+    new cdk.CfnOutput(this, "NonCFBucketName", {
+      value: nonCFBucket.bucketName,
+    });
+    new cdk.CfnOutput(this, "NonCFLogBucketName", {
+      value: nonCFLogBucket.bucketName,
+    });
     new cdk.CfnOutput(this, "UserPoolId", {
       value: userPool.userPoolId,
     });
