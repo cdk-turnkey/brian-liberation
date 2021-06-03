@@ -129,6 +129,19 @@ export class MadliberationWebapp extends cdk.Stack {
       }
     );
 
+    const nonCFBucketNameParam = new ssm.StringParameter(
+      this,
+      "NonCFBucketNameParam",
+      {
+        description:
+          "The name of the non-CloudFront bucket where front-end assets go",
+        parameterName: stackname("NonCFBucketName"),
+        stringValue: nonCFBucket.bucketName,
+        tier: ssm.ParameterTier.STANDARD,
+        type: ssm.ParameterType.STRING,
+      }
+    );
+
     let hostedZone, wwwDomainName, certificate, domainNames;
     if (domainName && zoneId) {
       hostedZone = route53.HostedZone.fromHostedZoneAttributes(
@@ -435,6 +448,9 @@ export class MadliberationWebapp extends cdk.Stack {
     });
     new cdk.CfnOutput(this, "NonCFBucketName", {
       value: nonCFBucket.bucketName,
+    });
+    new cdk.CfnOutput(this, "NonCFBucketNameParamName", {
+      value: nonCFBucketNameParam.parameterName,
     });
     new cdk.CfnOutput(this, "NonCFLogBucketName", {
       value: nonCFLogBucket.bucketName,
