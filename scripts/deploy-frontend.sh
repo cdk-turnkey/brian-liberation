@@ -23,5 +23,4 @@ echo "${PARAM_NAME}"
 echo "BUCKET:"
 echo "${BUCKET}"
 
-source scripts/deploy-to-bucket.sh
 deploy-to-bucket ${BUCKET}
