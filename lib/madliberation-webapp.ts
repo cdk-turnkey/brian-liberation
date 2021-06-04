@@ -13,6 +13,7 @@ import { Effect, PolicyStatement } from "@aws-cdk/aws-iam";
 import * as acm from "@aws-cdk/aws-certificatemanager";
 import * as route53 from "@aws-cdk/aws-route53";
 import * as targets from "@aws-cdk/aws-route53-targets";
+import * as cloudtrail from "@aws-cdk/aws-cloudtrail";
 const schema = require("../backend/schema");
 
 export interface MadLiberationWebappProps extends cdk.StackProps {
@@ -417,6 +418,13 @@ export class MadliberationWebapp extends cdk.Stack {
       versioned: true,
     });
     scriptsBucket.grantRead(fn);
+
+    // Log some data events
+    const trail = new cloudtrail.Trail(this, "CloudTrailBLib");
+    trail.addS3EventSelector([
+      { bucket: frontendBucket },
+      { bucket: nonCFBucket },
+    ]);
 
     const fromAddressOutput = fromAddress || "no SES from address";
     new cdk.CfnOutput(this, "sesFromAddress", {
