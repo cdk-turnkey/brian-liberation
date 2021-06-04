@@ -14,6 +14,7 @@ import * as acm from "@aws-cdk/aws-certificatemanager";
 import * as route53 from "@aws-cdk/aws-route53";
 import * as targets from "@aws-cdk/aws-route53-targets";
 import * as cloudtrail from "@aws-cdk/aws-cloudtrail";
+import * as athena from "@aws-cdk/aws-athena";
 const schema = require("../backend/schema");
 
 export interface MadLiberationWebappProps extends cdk.StackProps {
@@ -425,6 +426,16 @@ export class MadliberationWebapp extends cdk.Stack {
       { bucket: frontendBucket },
       { bucket: nonCFBucket },
     ]);
+    const athenaOutputBucket = new s3.Bucket(this, "AthenaOutputBucket");
+    const athenaWorkGroupName = stackname("BLibWorkGroup");
+    const athenaWorkGroup = new athena.CfnWorkGroup(this, "BLibWorkGroup", {
+      name: athenaWorkGroupName,
+      workGroupConfiguration: {
+        resultConfiguration: {
+          outputLocation: `s3://${athenaOutputBucket.bucketName}`,
+        },
+      },
+    });
 
     const fromAddressOutput = fromAddress || "no SES from address";
     new cdk.CfnOutput(this, "sesFromAddress", {
