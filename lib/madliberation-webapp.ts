@@ -15,6 +15,7 @@ import * as route53 from "@aws-cdk/aws-route53";
 import * as targets from "@aws-cdk/aws-route53-targets";
 import * as cloudtrail from "@aws-cdk/aws-cloudtrail";
 import * as athena from "@aws-cdk/aws-athena";
+import * as glue from "@aws-cdk/aws-glue";
 const schema = require("../backend/schema");
 
 export interface MadLiberationWebappProps extends cdk.StackProps {
@@ -435,6 +436,12 @@ export class MadliberationWebapp extends cdk.Stack {
           outputLocation: `s3://${athenaOutputBucket.bucketName}`,
         },
       },
+    });
+    const glueDBName = stackname("GlueDBName");
+    const glueDBLocationBucket = new s3.Bucket(this, "GlueDBLocationBucket");
+    const glueDB = new glue.Database(this, "BLibGlueDB", {
+      databaseName: glueDBName,
+      locationUri: `s3://${glueDBLocationBucket.bucketName}`,
     });
 
     const fromAddressOutput = fromAddress || "no SES from address";
