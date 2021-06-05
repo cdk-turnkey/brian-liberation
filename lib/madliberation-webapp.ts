@@ -437,7 +437,7 @@ export class MadliberationWebapp extends cdk.Stack {
         },
       },
     });
-    const glueDBName = stackname("GlueDBName");
+    const glueDBName = stackname("gluedb").toLowerCase();
     const glueDBLocationBucket = new s3.Bucket(this, "GlueDBLocationBucket");
     const glueDB = new glue.Database(this, "BLibGlueDB", {
       databaseName: glueDBName,
