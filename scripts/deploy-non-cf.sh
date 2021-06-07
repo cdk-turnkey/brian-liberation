@@ -12,5 +12,5 @@ echo "${PARAM_NAME}"
 echo "BUCKET:"
 echo "${BUCKET}"
 
-source scripts/deploy-to-bucket.sh
+source scripts/deploy-to-non-cf-bucket.sh
 deploy-to-bucket ${BUCKET}
