@@ -106,7 +106,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: "us-east-1"
         run: |
-          bash scripts/deploy-non-cf-bucket.sh
+          bash scripts/deploy-non-cf.sh
 
       - name: Deploy content (dev account)
         working-directory: content
