@@ -100,6 +100,14 @@ jobs:
         run: |
           bash scripts/deploy-frontend.sh
 
+      - name: Deploy to the non-CloudFront bucket (test account)
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.TEST_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.TEST_AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: "us-east-1"
+        run: |
+          bash scripts/deploy-non-cf.sh
+
       - name: Deploy content (test account)
         working-directory: content
         env:
@@ -150,6 +158,14 @@ jobs:
           AWS_DEFAULT_REGION: "us-east-1"
         run: |
           bash scripts/deploy-frontend.sh
+
+      - name: Deploy to the non-CloudFront bucket (prod account)
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: "us-east-1"
+        run: |
+          bash scripts/deploy-non-cf.sh
 
       - name: Deploy content (prod account)
         working-directory: content

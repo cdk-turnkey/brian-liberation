@@ -100,6 +100,14 @@ jobs:
         run: |
           bash scripts/deploy-frontend.sh
 
+      - name: Deploy to the non-CloudFront bucket (dev account)
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: "us-east-1"
+        run: |
+          bash scripts/deploy-non-cf.sh
+
       - name: Deploy content (dev account)
         working-directory: content
         env:
