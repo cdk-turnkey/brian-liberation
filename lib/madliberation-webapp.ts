@@ -16,6 +16,7 @@ import * as targets from "@aws-cdk/aws-route53-targets";
 import * as cloudtrail from "@aws-cdk/aws-cloudtrail";
 import * as athena from "@aws-cdk/aws-athena";
 import * as glue from "@aws-cdk/aws-glue";
+import { RemovalPolicy } from "@aws-cdk/core";
 const schema = require("../backend/schema");
 
 export interface MadLiberationWebappProps extends cdk.StackProps {
@@ -107,14 +108,24 @@ export class MadliberationWebapp extends cdk.Stack {
       projectionType: dynamodb.ProjectionType.ALL,
     });
 
-    const frontendLogBucket = new s3.Bucket(this, "FrontendLogBucket");
+    const frontendLogBucket = new s3.Bucket(this, "FrontendLogBucket", {
+      removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
+    });
     const frontendBucket = new s3.Bucket(this, "FrontendBucket", {
       serverAccessLogsBucket: frontendLogBucket,
+      removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
     });
-    const nonCFLogBucket = new s3.Bucket(this, "NonCFLogBucket");
+    const nonCFLogBucket = new s3.Bucket(this, "NonCFLogBucket", {
+      removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
+    });
     const nonCFBucket = new s3.Bucket(this, "NonCFBucket", {
       serverAccessLogsBucket: nonCFLogBucket,
       accessControl: s3.BucketAccessControl.PUBLIC_READ,
+      removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
     });
 
     // This is so a script can find the bucket and deploy to it.
@@ -162,7 +173,10 @@ export class MadliberationWebapp extends cdk.Stack {
     }
 
     const distroProps: any = {
-      logBucket: new s3.Bucket(this, "DistroLoggingBucket"),
+      logBucket: new s3.Bucket(this, "DistroLoggingBucket", {
+        removalPolicy: RemovalPolicy.DESTROY,
+        autoDeleteObjects: true,
+      }),
       logFilePrefix: "distribution-access-logs/",
       logIncludesCookies: true,
       defaultBehavior: {
@@ -418,6 +432,8 @@ export class MadliberationWebapp extends cdk.Stack {
 
     const scriptsBucket = new s3.Bucket(this, "ScriptsBucket", {
       versioned: true,
+      removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
     });
     scriptsBucket.grantRead(fn);
 
@@ -427,7 +443,10 @@ export class MadliberationWebapp extends cdk.Stack {
       { bucket: frontendBucket },
       { bucket: nonCFBucket },
     ]);
-    const athenaOutputBucket = new s3.Bucket(this, "AthenaOutputBucket");
+    const athenaOutputBucket = new s3.Bucket(this, "AthenaOutputBucket", {
+      removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
+    });
     const athenaWorkGroupName = stackname("BLibWorkGroup");
     const athenaWorkGroup = new athena.CfnWorkGroup(this, "BLibWorkGroup", {
       name: athenaWorkGroupName,
@@ -438,7 +457,10 @@ export class MadliberationWebapp extends cdk.Stack {
       },
     });
     const glueDBName = stackname("gluedb").toLowerCase();
-    const glueDBLocationBucket = new s3.Bucket(this, "GlueDBLocationBucket");
+    const glueDBLocationBucket = new s3.Bucket(this, "GlueDBLocationBucket", {
+      removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
+    });
     const glueDB = new glue.Database(this, "BLibGlueDB", {
       databaseName: glueDBName,
       locationUri: `s3://${glueDBLocationBucket.bucketName}`,
