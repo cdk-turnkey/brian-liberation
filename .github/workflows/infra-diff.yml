@@ -25,12 +25,16 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
+          ref: ${{ github.event.inputs.from_branch }}
           submodules: true
           persist-credentials: false
 
       - name: Validate inputs
         run: |
           git branch -a
+          git log -1
+          echo ${GITHUB_REPOSITORY}
+          echo ${GITHUB_REF}
 
       # - name: Install
       #   run: |
