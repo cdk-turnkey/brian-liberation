@@ -6,7 +6,13 @@ name: infra-diff
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
+    inputs:
+      from_branch:
+        description: "The branch in this repo that changes are coming FROM"
+        required: true
+      to_branch:
+        description: "The branch in this repo that changes are going TO"
+        required: true
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -22,83 +28,87 @@ jobs:
           submodules: true
           persist-credentials: false
 
-      - name: Install
+      - name: Validate inputs
         run: |
-          npm install
+          git branch -a
 
-      - name: Install frontend
-        working-directory: frontend
-        run: |
-          npm install
+      # - name: Install
+      #   run: |
+      #     npm install
 
-      - name: Install backend
-        working-directory: backend
-        run: |
-          npm install
+      # - name: Install frontend
+      #   working-directory: frontend
+      #   run: |
+      #     npm install
 
-      - name: Test backend
-        working-directory: backend
-        run: |
-          npm test
+      # - name: Install backend
+      #   working-directory: backend
+      #   run: |
+      #     npm install
 
-      - name: Build
-        run: |
-          npm run build
+      # - name: Test backend
+      #   working-directory: backend
+      #   run: |
+      #     npm test
 
-      - name: Build frontend
-        working-directory: frontend
-        run: |
-          npm run build
+      # - name: Build
+      #   run: |
+      #     npm run build
 
-      - name: Test frontend
-        working-directory: frontend
-        run: |
-          npm test
+      # - name: Build frontend
+      #   working-directory: frontend
+      #   run: |
+      #     npm run build
 
-      - name: Install content
-        working-directory: content
-        run: |
-          npm install
+      # - name: Test frontend
+      #   working-directory: frontend
+      #   run: |
+      #     npm test
 
-      - name: Test content
-        working-directory: content
-        run: |
-          npm test
+      # - name: Install content
+      #   working-directory: content
+      #   run: |
+      #     npm install
 
-      - name: Test
-        run: |
-          npm test
+      # - name: Test content
+      #   working-directory: content
+      #   run: |
+      #     npm test
 
-      - name: Identify test account and region
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.TEST_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.TEST_AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: "us-east-1"
-        run: |
-          aws sts get-caller-identity
-          echo ${AWS_DEFAULT_REGION} | sed 's/-/+/g'
+      # - name: Test
+      #   run: |
+      #     npm test
 
-      - name: Diff the test account
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.TEST_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.TEST_AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: "us-east-1"
-        run: |
-          npx cdk diff
+      # - name: Identify test account and region
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.TEST_AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.TEST_AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: "us-east-1"
+      #   run: |
+      #     aws sts get-caller-identity
+      #     echo ${AWS_DEFAULT_REGION} | sed 's/-/+/g'
 
-      - name: Identify prod account and region
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: "us-east-1"
-        run: |
-          aws sts get-caller-identity
-          echo ${AWS_DEFAULT_REGION} | sed 's/-/+/g'
+      # - name: Diff the test account
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.TEST_AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.TEST_AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: "us-east-1"
+      #   run: |
+      #     npx cdk diff
 
-      - name: Diff the prod account
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: "us-east-1"
-        run: |
-          npx cdk diff
+      # - name: Identify prod account and region
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: "us-east-1"
+      #   run: |
+      #     aws sts get-caller-identity
+      #     echo ${AWS_DEFAULT_REGION} | sed 's/-/+/g'
+
+      # - name: Diff the prod account
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: "us-east-1"
+      #   run: |
+      #     npx cdk diff
