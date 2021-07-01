@@ -28,75 +28,79 @@ jobs:
           ref: ${{ github.event.inputs.from_branch }}
 
       - name: Validate inputs
+        env:
+          REF_INTERPOLATED: "this includes ${{ github.event.inputs.to_branch }}"
         run: |
           git branch -a
           git log -1
           echo ${GITHUB_REPOSITORY}
           echo ${GITHUB_REF}
+          echo ${REF_INTERPOLATED}
 
-      # - name: Install
-      #   run: |
-      #     npm install
+      - name: Install
+        run: |
+          npm install
 
-      # - name: Install frontend
-      #   working-directory: frontend
-      #   run: |
-      #     npm install
+      - name: Install frontend
+        working-directory: frontend
+        run: |
+          npm install
 
-      # - name: Install backend
-      #   working-directory: backend
-      #   run: |
-      #     npm install
+      - name: Install backend
+        working-directory: backend
+        run: |
+          npm install
 
-      # - name: Test backend
-      #   working-directory: backend
-      #   run: |
-      #     npm test
+      - name: Test backend
+        working-directory: backend
+        run: |
+          npm test
 
-      # - name: Build
-      #   run: |
-      #     npm run build
+      - name: Build
+        run: |
+          npm run build
 
-      # - name: Build frontend
-      #   working-directory: frontend
-      #   run: |
-      #     npm run build
+      - name: Build frontend
+        working-directory: frontend
+        run: |
+          npm run build
 
-      # - name: Test frontend
-      #   working-directory: frontend
-      #   run: |
-      #     npm test
+      - name: Test frontend
+        working-directory: frontend
+        run: |
+          npm test
 
-      # - name: Install content
-      #   working-directory: content
-      #   run: |
-      #     npm install
+      - name: Install content
+        working-directory: content
+        run: |
+          npm install
 
-      # - name: Test content
-      #   working-directory: content
-      #   run: |
-      #     npm test
+      - name: Test content
+        working-directory: content
+        run: |
+          npm test
 
-      # - name: Test
-      #   run: |
-      #     npm test
+      - name: Test
+        run: |
+          npm test
 
-      # - name: Identify test account and region
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.TEST_AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.TEST_AWS_SECRET_ACCESS_KEY }}
-      #     AWS_DEFAULT_REGION: "us-east-1"
-      #   run: |
-      #     aws sts get-caller-identity
-      #     echo ${AWS_DEFAULT_REGION} | sed 's/-/+/g'
+      - name: Identify test account and region
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.TEST_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.TEST_AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: "us-east-1"
+        run: |
+          aws sts get-caller-identity
+          echo ${AWS_DEFAULT_REGION} | sed 's/-/+/g'
 
-      # - name: Diff the test account
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.TEST_AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.TEST_AWS_SECRET_ACCESS_KEY }}
-      #     AWS_DEFAULT_REGION: "us-east-1"
-      #   run: |
-      #     npx cdk diff
+      - name: Diff the test account
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.TEST_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.TEST_AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: "us-east-1"
+          TO_REF: ${{ github.event.inputs.to_branch }}
+        run: |
+          GITHUB_REF="refs/heads/${TO_REF}" npx cdk diff
 
       # - name: Identify prod account and region
       #   env:
