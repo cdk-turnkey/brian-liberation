@@ -108,6 +108,11 @@ export class MadliberationWebapp extends cdk.Stack {
       projectionType: dynamodb.ProjectionType.ALL,
     });
 
+    const canaryBucket = new s3.Bucket(this, "CanaryBucket", {
+      removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
+    });
+
     const frontendLogBucket = new s3.Bucket(this, "FrontendLogBucket", {
       removalPolicy: RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
